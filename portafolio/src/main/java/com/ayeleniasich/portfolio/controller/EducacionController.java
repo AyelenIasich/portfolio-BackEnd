@@ -1,4 +1,3 @@
-
 package com.ayeleniasich.portfolio.controller;
 
 import com.ayeleniasich.portfolio.dto.EducacionDto;
@@ -10,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,6 +51,7 @@ public class EducacionController {
         return new ResponseEntity(educacion, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     @ResponseBody
     public ResponseEntity<?> crearEducacion(@RequestBody EducacionDto educacionDto) {
@@ -82,6 +83,7 @@ public class EducacionController {
         return new ResponseEntity(new Mensaje("Lista de educacion creada"), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     @ResponseBody
     public ResponseEntity<?> editarEducacion(@PathVariable("id") Long id, @RequestBody EducacionDto educacionDto) {
@@ -91,7 +93,7 @@ public class EducacionController {
         if (StringUtils.isBlank(educacionDto.getNombre())) {
             return new ResponseEntity(new Mensaje("El nombre es obliglatorio"), HttpStatus.BAD_REQUEST);
         }
-        if (educacionDto.getInicio() == null || (educacionDto.getInicio() < 1900 && educacionDto.getInicio() < 3000)  ) {
+        if (educacionDto.getInicio() == null || (educacionDto.getInicio() < 1900 && educacionDto.getInicio() < 3000)) {
             return new ResponseEntity(new Mensaje("Año inválido. El año de inicio debe ser entre 1900 al 3000"), HttpStatus.BAD_REQUEST);
         }
         if (educacionDto.getFin() == null || (educacionDto.getFin() < 1900 && educacionDto.getFin() < 3000)) {
@@ -122,6 +124,7 @@ public class EducacionController {
         return new ResponseEntity(new Mensaje("Lista de educación actualizada"), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> borrarEducacion(@PathVariable("id") Long id) {
         if (!EduServ.existsById(id)) {
