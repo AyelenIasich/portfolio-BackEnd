@@ -10,6 +10,7 @@ import com.ayeleniasich.portfolio.security.enums.RolNombre;
 import com.ayeleniasich.portfolio.security.jwt.JwtProvider;
 import com.ayeleniasich.portfolio.security.service.RolService;
 import com.ayeleniasich.portfolio.security.service.UsuarioService;
+import java.text.ParseException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +26,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
-
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -88,5 +88,12 @@ public class AuthController {
         String jwt = jwtProvider.generateToken(authentication);
         JwtDto jwtDto = new JwtDto(jwt);
         return new ResponseEntity(jwtDto, HttpStatus.OK);
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<JwtDto> refresh(@RequestBody JwtDto jwtDto) throws ParseException {
+        String token = jwtProvider.refreshToken(jwtDto);
+        JwtDto jwt = new JwtDto(token);
+        return new ResponseEntity(jwt, HttpStatus.OK);
     }
 }
