@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.ayeleniasich.portfolio.dto;
 
 import javax.validation.constraints.Min;
@@ -9,13 +5,8 @@ import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- *
- * @author Ayelén
- */
 @Getter
 @Setter
-
 public class EducacionDto {
 
     @NotBlank
@@ -31,27 +22,29 @@ public class EducacionDto {
     private String titulo;
 
     @NotBlank
-    private String lugar;
-
-    @NotBlank
     private String imagen;
 
-    @NotBlank
+    private String descripcion;
+
     private String modalidad;
+
+    private String titleUrl;
+
+    private String url;
 
     public EducacionDto() {
     }
 
-    public EducacionDto(String nombre, Integer inicio, Integer fin, String titulo, String lugar, String imagen, String modalidad) {
+    public EducacionDto(String nombre, Integer inicio, Integer fin, String titulo, String imagen, String modalidad, String url, String titleUrl) {
         this.nombre = nombre;
         this.inicio = inicio;
         this.fin = fin;
         this.titulo = titulo;
-        this.lugar = lugar;
         this.imagen = imagen;
+        this.descripcion = descripcion;
         this.modalidad = modalidad;
+        this.titleUrl = titleUrl;
+        this.url = url;
     }
-
-    
 
 }

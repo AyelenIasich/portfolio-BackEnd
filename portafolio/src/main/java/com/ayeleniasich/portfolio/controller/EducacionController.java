@@ -20,12 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
-/**
- *
- * @author Ayelén
- */
+
 @RestController
 @RequestMapping("/educacion")
 @CrossOrigin
@@ -67,18 +63,10 @@ public class EducacionController {
         if (StringUtils.isBlank(educacionDto.getTitulo())) {
             return new ResponseEntity(new Mensaje("El titulo es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if (StringUtils.isBlank(educacionDto.getLugar())) {
-            return new ResponseEntity(new Mensaje("La dirección es obliglatoria"), HttpStatus.BAD_REQUEST);
-        }
-
         if (StringUtils.isBlank(educacionDto.getImagen())) {
             return new ResponseEntity(new Mensaje("La imagen es obliglatorio"), HttpStatus.BAD_REQUEST);
         }
-        if (StringUtils.isBlank(educacionDto.getModalidad())) {
-            return new ResponseEntity(new Mensaje("La modalidad es obliglatoria"), HttpStatus.BAD_REQUEST);
-        }
-
-        Educacion educacion = new Educacion(educacionDto.getNombre(), educacionDto.getInicio(), educacionDto.getFin(), educacionDto.getTitulo(), educacionDto.getLugar(), educacionDto.getImagen(), educacionDto.getModalidad());
+        Educacion educacion = new Educacion(educacionDto.getNombre(), educacionDto.getInicio(), educacionDto.getFin(), educacionDto.getTitulo(), educacionDto.getImagen(), educacionDto.getModalidad(), educacionDto.getUrl(), educacionDto.getTitleUrl(), educacionDto.getDescripcion());
         EduServ.crearEducacion(educacion);
         return new ResponseEntity(new Mensaje("Lista de educacion creada"), HttpStatus.OK);
     }
@@ -102,24 +90,20 @@ public class EducacionController {
         if (StringUtils.isBlank(educacionDto.getTitulo())) {
             return new ResponseEntity(new Mensaje("El titulo es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if (StringUtils.isBlank(educacionDto.getLugar())) {
-            return new ResponseEntity(new Mensaje("La dirección es obliglatoria"), HttpStatus.BAD_REQUEST);
-        }
 
         if (StringUtils.isBlank(educacionDto.getImagen())) {
             return new ResponseEntity(new Mensaje("La imagen es obliglatorio"), HttpStatus.BAD_REQUEST);
         }
-        if (StringUtils.isBlank(educacionDto.getModalidad())) {
-            return new ResponseEntity(new Mensaje("La modalidad es obliglatoria"), HttpStatus.BAD_REQUEST);
-        }
 
         Educacion educacion = EduServ.buscarEducacion(id).get();
         educacion.setNombre(educacionDto.getNombre());
-        educacion.setInicio(educacionDto.getFin());
+        educacion.setFin(educacionDto.getFin());
+        educacion.setInicio(educacionDto.getInicio());
         educacion.setTitulo(educacionDto.getTitulo());
-        educacion.setLugar(educacionDto.getLugar());
+        educacion.setDescripcion(educacionDto.getDescripcion());
         educacion.setImagen(educacionDto.getImagen());
-        educacion.setModalidad(educacionDto.getModalidad());
+        educacion.setUrl(educacionDto.getUrl());
+        educacion.setTitleUrl(educacionDto.getTitleUrl());
         EduServ.crearEducacion(educacion);
         return new ResponseEntity(new Mensaje("Lista de educación actualizada"), HttpStatus.OK);
     }

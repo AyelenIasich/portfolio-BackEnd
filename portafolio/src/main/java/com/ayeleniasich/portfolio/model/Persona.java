@@ -12,14 +12,10 @@ import javax.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- *
- * @author Ayelén
- */
 @Getter
 @Setter
 @Entity
-public class Educacion {
+public class Persona {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,30 +23,25 @@ public class Educacion {
 
     private Long id;
     private String nombre;
-    private int inicio;
-    private int fin;
+    private String apellido;
     private String titulo;
-
-    private String imagen;
-    private String modalidad;
-    private String url;
-    private String titleUrl;
-    private String descripcion;
-
-    public Educacion() {
+    private String descripcionMain;
+    private String imagenMain;
+    
+   
+    public Persona() {
     }
 
-    public Educacion(String nombre, int inicio, int fin, String titulo, String imagen, String modalidad, String url, String titleUrl, String descripcion) {
-
+    public Persona(String nombre, String apellido, String titulo, String descripcionMain, String imagenMain) {
         this.nombre = nombre;
-        this.inicio = inicio;
-        this.fin = fin;
+        this.apellido = apellido;
         this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.imagen = imagen;
-        this.modalidad = modalidad;
-        this.url = url;
-        this.titleUrl = titleUrl;
+        this.descripcionMain = descripcionMain;
+        this.imagenMain = imagenMain;
     }
+
+   
+
+  
 
 }
