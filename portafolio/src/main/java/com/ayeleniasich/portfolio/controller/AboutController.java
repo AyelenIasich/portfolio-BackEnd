@@ -53,18 +53,17 @@ public class AboutController {
             return new ResponseEntity(new Mensaje("El titulo es obliglatorio"), HttpStatus.BAD_REQUEST);
         }
         if (StringUtils.isBlank(aboutDto.getSubtituloAbout())) {
-            return new ResponseEntity(new Mensaje("El subitulo es obliglatorio"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("El subtitulo es obliglatorio"), HttpStatus.BAD_REQUEST);
+        }
+        if (StringUtils.isBlank(aboutDto.getDescripcionAbout())) {
+            return new ResponseEntity(new Mensaje("La descripcion es obligatoria"), HttpStatus.BAD_REQUEST);
         }
         if (StringUtils.isBlank(aboutDto.getImagenAbout())) {
             return new ResponseEntity(new Mensaje("La imagen es obliglatoria"), HttpStatus.BAD_REQUEST);
         }
-        if (StringUtils.isBlank(aboutDto.getDescripcionAbout())) {
-            return new ResponseEntity(new Mensaje("La descripcion es obliglatoria"), HttpStatus.BAD_REQUEST);
-        }
-
-        About about = new About(aboutDto.getTituloAbout(), aboutDto.getSubtituloAbout(), aboutDto.getDescripcionAbout(), aboutDto.getImagenAbout());
+        About about = new About(aboutDto.getTituloAbout(), aboutDto.getSubtituloAbout(), aboutDto.getDescripcionAbout(), aboutDto.getImagenAbout(), aboutDto.getParrafoAbout(), aboutDto.getParrafo2About());
         AboutServ.crearAbout(about);
-        return new ResponseEntity(new Mensaje("Sección acerca de mi creada"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("sobre mi creada"), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -74,24 +73,26 @@ public class AboutController {
         if (!AboutServ.existsById(id)) {
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
         }
-        if (StringUtils.isBlank(aboutDto.getTituloAbout())) {
-            return new ResponseEntity(new Mensaje("El titulo es obliglatorio"), HttpStatus.BAD_REQUEST);
-        }
-        if (StringUtils.isBlank(aboutDto.getSubtituloAbout())) {
-            return new ResponseEntity(new Mensaje("El subitulo es obliglatorio"), HttpStatus.BAD_REQUEST);
-        }
-        if (StringUtils.isBlank(aboutDto.getImagenAbout())) {
-            return new ResponseEntity(new Mensaje("La imagen es obliglatoria"), HttpStatus.BAD_REQUEST);
-        }
-        if (StringUtils.isBlank(aboutDto.getDescripcionAbout())) {
-            return new ResponseEntity(new Mensaje("La descripcion es obliglatoria"), HttpStatus.BAD_REQUEST);
-        }
+//        if (StringUtils.isBlank(aboutDto.getTituloAbout())) {
+//            return new ResponseEntity(new Mensaje("El titulo es obliglatorio"), HttpStatus.BAD_REQUEST);
+//        }
+//        if (StringUtils.isBlank(aboutDto.getSubtituloAbout())) {
+//            return new ResponseEntity(new Mensaje("El subitulo es obliglatorio"), HttpStatus.BAD_REQUEST);
+//        }
+//        if (StringUtils.isBlank(aboutDto.getImagenAbout())) {
+//            return new ResponseEntity(new Mensaje("La imagen es obliglatoria"), HttpStatus.BAD_REQUEST);
+//        }
+//        if (StringUtils.isBlank(aboutDto.getDescripcionAbout())) {
+//            return new ResponseEntity(new Mensaje("La descripcion es obliglatoria"), HttpStatus.BAD_REQUEST);
+//        }
 
         About about = AboutServ.buscarAbout(id).get();
         about.setTituloAbout(aboutDto.getTituloAbout());
         about.setSubtituloAbout(aboutDto.getSubtituloAbout());
         about.setDescripcionAbout(aboutDto.getDescripcionAbout());
         about.setImagenAbout(aboutDto.getImagenAbout());
+        about.setParrafoAbout(aboutDto.getParrafoAbout());
+         about.setParrafo2About(aboutDto.getParrafo2About());
 
         AboutServ.crearAbout(about);
         return new ResponseEntity(new Mensaje("Datos actualizados"), HttpStatus.OK);
