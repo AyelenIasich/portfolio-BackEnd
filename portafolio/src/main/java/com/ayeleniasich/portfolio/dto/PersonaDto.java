@@ -25,17 +25,22 @@ public class PersonaDto {
 
     @NotBlank
     private String imagenMain;
+    
+    private String banner;
 
     public PersonaDto() {
     }
 
-    public PersonaDto(String nombre, String apellido, String titulo, String descripcionMain, String imagenMain) {
+    public PersonaDto(String nombre, String apellido, String titulo, String descripcionMain, String imagenMain, String banner) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.titulo = titulo;
         this.descripcionMain = descripcionMain;
         this.imagenMain = imagenMain;
+        this.banner = banner;
     }
+
+   
 
 
 

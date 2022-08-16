@@ -27,21 +27,19 @@ public class Persona {
     private String titulo;
     private String descripcionMain;
     private String imagenMain;
-    
-   
+    private String banner;
+
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido, String titulo, String descripcionMain, String imagenMain) {
+    public Persona(String nombre, String apellido, String titulo, String descripcionMain, String imagenMain, String banner) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.titulo = titulo;
         this.descripcionMain = descripcionMain;
         this.imagenMain = imagenMain;
+        this.banner = banner;
     }
 
-   
-
-  
-
+ 
 }

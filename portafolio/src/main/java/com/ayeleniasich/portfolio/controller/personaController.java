@@ -67,7 +67,7 @@ public class personaController {
         if (StringUtils.isBlank(personaDto.getDescripcionMain())) {
             return new ResponseEntity(new Mensaje("La descripcion es obliglatoria"), HttpStatus.BAD_REQUEST);
         }
-        Persona persona = new Persona(personaDto.getNombre(), personaDto.getTitulo(), personaDto.getApellido(), personaDto.getDescripcionMain(), personaDto.getImagenMain());
+        Persona persona = new Persona(personaDto.getNombre(), personaDto.getTitulo(), personaDto.getApellido(), personaDto.getDescripcionMain(), personaDto.getImagenMain(), personaDto.getBanner());
         PerServ.crearPersona(persona);
         return new ResponseEntity(new Mensaje("persona creada"), HttpStatus.OK);
     }
@@ -101,6 +101,7 @@ public class personaController {
         persona.setTitulo(personaDto.getTitulo());
         persona.setDescripcionMain(personaDto.getDescripcionMain());
         persona.setImagenMain(personaDto.getImagenMain());
+        persona.setBanner(personaDto.getBanner());
         PerServ.crearPersona(persona);
         return new ResponseEntity(new Mensaje("Datos actualizados"), HttpStatus.OK);
     }
