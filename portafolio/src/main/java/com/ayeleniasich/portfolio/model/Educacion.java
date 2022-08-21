@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.ayeleniasich.portfolio.model;
 
 import javax.persistence.Column;
@@ -12,10 +8,6 @@ import javax.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- *
- * @author Ayelén
- */
 @Getter
 @Setter
 @Entity

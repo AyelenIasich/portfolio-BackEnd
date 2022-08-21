@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.ayeleniasich.portfolio.security;
 
 import com.ayeleniasich.portfolio.security.jwt.JwtEntryPoint;
@@ -64,11 +60,31 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/auth/**").permitAll()
-                .antMatchers("/experiencia/lista").permitAll() 
-                .antMatchers("/experiencia/create").permitAll() 
-                .antMatchers("/educacion/lista").permitAll()    
+                .antMatchers("/persona/lista").permitAll()
+                .antMatchers("/about/lista").permitAll()
+                .antMatchers("/educacion/lista").permitAll()
+                .antMatchers("/experiencia/lista").permitAll()
+                .antMatchers("/proyectos/lista").permitAll()
+                .antMatchers("/skill/lista").permitAll()
+                .antMatchers("/softskill/lista").permitAll()
+                .antMatchers("/trabajo/lista").permitAll()
+                .antMatchers("/experiencia/create").permitAll()
+                .antMatchers("/persona/create**").authenticated()
+                .antMatchers("/persona/update**").authenticated()
+                .antMatchers("/about/create**").authenticated()
+                .antMatchers("/about/update**").authenticated()
                 .antMatchers("/educacion/create**").authenticated()
-                .antMatchers("/educacion/update**").authenticated()           
+                .antMatchers("/educacion/update**").authenticated()
+                .antMatchers("/experiencia/create**").authenticated()
+                .antMatchers("/experiencia/update**").authenticated()
+                .antMatchers("/skill/create**").authenticated()
+                .antMatchers("/skill/update**").authenticated()
+                .antMatchers("/softskill/create**").authenticated()
+                .antMatchers("/softskill/update**").authenticated()
+                .antMatchers("/trabajo/create**").authenticated()
+                .antMatchers("/trabajo/update**").authenticated()
+                .antMatchers("/proyectos/create**").authenticated()
+                .antMatchers("/proyectos/update**").authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
                 .and()
